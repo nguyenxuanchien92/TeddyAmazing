@@ -1,6 +1,8 @@
 package com.cg.teddyamazing;
 
 
+import com.cg.teddyamazing.service.customer.CustomerService;
+import com.cg.teddyamazing.service.customer.impl.CustomerServiceImpl;
 import com.cg.teddyamazing.service.product.CategoryService;
 import com.cg.teddyamazing.service.product.ProductService;
 import com.cg.teddyamazing.service.product.SizeService;
@@ -30,6 +32,11 @@ public class TeddyAmazingApplication {
     @Bean
     public SizeService sizeService(){
         return new SizeServiceImpl();
+    }
+
+    @Bean
+    public CustomerService customerService(){
+        return new CustomerServiceImpl();
     }
 
 }

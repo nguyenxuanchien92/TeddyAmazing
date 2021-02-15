@@ -3,6 +3,7 @@ package com.cg.teddyamazing.service.product.impl;
 import com.cg.teddyamazing.model.product.Category;
 import com.cg.teddyamazing.repository.product.CategoryRepo;
 import com.cg.teddyamazing.service.product.CategoryService;
+import com.cg.teddyamazing.service.product.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 

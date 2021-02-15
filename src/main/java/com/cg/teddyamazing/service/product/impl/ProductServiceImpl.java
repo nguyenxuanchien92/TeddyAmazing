@@ -4,6 +4,7 @@ import com.cg.teddyamazing.model.product.Category;
 import com.cg.teddyamazing.model.product.Product;
 import com.cg.teddyamazing.repository.product.ProductRepo;
 import com.cg.teddyamazing.service.product.ProductService;
+import com.cg.teddyamazing.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
