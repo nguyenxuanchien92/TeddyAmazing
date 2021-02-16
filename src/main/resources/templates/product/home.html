@@ -12,9 +12,9 @@
     <input name="s" type="text"/>
     <input type="submit" th:value="Search"/>
 </form><br/>
-<form>
-    Sort by Fisrt name :
-    <input type="submit" name="s1" th:value="SortByName">
+<form >
+    Sort All Product by Name :
+    <input type="submit" name="s1" th:value="Sort">
 </form>
 <table border="1">
     <tr>
@@ -43,9 +43,9 @@
     </th:block>
 </table>
 <div>
-    <a th:href="@{'/home'(page=${products.number - 1})}" th:if="${products.hasPrevious()}">Previous</a>
+    <a th:href="@{'/home'(page=${products.number})}" th:if="${products.hasPrevious()}">Previous</a>
     <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>
-    <a th:href="@{'/home'(page=${products.number + 1})}" th:if="${products.hasNext()}">Next</a>
+    <a th:href="@{'/home'(page=${products.number + 2})}" th:if="${products.hasNext()}">Next</a>
 </div>
 
 </body>
