@@ -14,7 +14,7 @@ public interface ProductService {
 
     void remove(String id);
 
-    Iterable<Product> findAllByCategory(Category province);
+    Iterable<Product> findAllByCategory(Category category);
 
     Page<Product> findAllByNameContaining(String name, Pageable pageable);
 

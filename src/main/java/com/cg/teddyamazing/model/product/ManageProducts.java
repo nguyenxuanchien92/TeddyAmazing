@@ -1,5 +1,7 @@
 package com.cg.teddyamazing.model.product;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -8,6 +10,8 @@ import java.sql.Date;
 public class ManageProducts {
     @Id
     private String id;
+    @Column(name = "created_at")
+    @CreationTimestamp
     private Date date_Added;
     private Date nsx;
     private Date hsd;
