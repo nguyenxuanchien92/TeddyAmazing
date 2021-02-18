@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Optional;
+
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
@@ -18,7 +20,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer findById(Long id) {
+    public Optional<Customer> findById(Long id) {
         return customerRepo.findById(id);
     }
 
@@ -29,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void remove(Long id) {
-        customerRepo.delete(id);
+        customerRepo.deleteById(id);
     }
 
     @Override

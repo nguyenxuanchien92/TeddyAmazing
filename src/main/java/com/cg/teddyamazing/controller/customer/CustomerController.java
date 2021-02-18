@@ -4,10 +4,6 @@ package com.cg.teddyamazing.controller.customer;
 import com.cg.teddyamazing.model.customer.Customer;
 import com.cg.teddyamazing.service.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -48,7 +44,7 @@ public class CustomerController {
 //        ModelAndView modelAndView = new ModelAndView("/customer/list");
 //        int pageNumb = 0;
 //        if(page.isPresent() && page.get() > 1) pageNumb = page.get() - 1;
-////        PageRequest pageSplitter = new PageRequest(pageNumb,4);
+//        PageRequest pageSplitter = new PageRequest(pageNumb,4);
 //        if(keyword.isPresent()){
 //            customers = customerService.findAllByFirstNameContaining(keyword.get(), pageSplitter);
 //            modelAndView.addObject("keyword", keyword.get());
@@ -60,29 +56,29 @@ public class CustomerController {
 //
 //
 //
-////        if (page.isPresent() && page.get() > 1){
-////            pageNumb = page.get() - 1;
-////        }
-////
-////        PageRequest pageRequest = new PageRequest(pageNumb,4,new Sort("firstName"));
-////        if (keyword.isPresent()){
-////            customers = customerService.findAllByFirstNameContaining(keyword.get(), pageRequest);
-////            modelAndView.addObject("keyword",keyword.get());
-////        } else {
-////            customers = customerService.findAll(pageRequest);
-////        }
-////
-////        modelAndView.addObject("customers", customers);
-////        return modelAndView;
+//        if (page.isPresent() && page.get() > 1){
+//            pageNumb = page.get() - 1;
+//        }
 //
+//        PageRequest pageRequest = new PageRequest(pageNumb,4,new Sort("firstName"));
+//        if (keyword.isPresent()){
+//            customers = customerService.findAllByFirstNameContaining(keyword.get(), pageRequest);
+//            modelAndView.addObject("keyword",keyword.get());
+//        } else {
+//            customers = customerService.findAll(pageRequest);
+//        }
+//
+//        modelAndView.addObject("customers", customers);
+//        return modelAndView;
+
 //    }
 
     @GetMapping("/edit-customer/{id}")
     public ModelAndView showEditForm(@PathVariable Long id){
-        Customer customer = customerService.findById(id);
-        if (customer != null){
+        Optional<Customer> customer = customerService.findById(id);
+        if (customer.isPresent()){
             ModelAndView modelAndView = new ModelAndView("/customer/edit");
-            modelAndView.addObject("customer",customer);
+            modelAndView.addObject("customer",customer.get());
             return modelAndView;
         } else {
             ModelAndView modelAndView = new ModelAndView("/error.404");

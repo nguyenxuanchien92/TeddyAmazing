@@ -12,7 +12,7 @@ import javax.validation.constraints.NotEmpty;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty(message = "please input your first name")
     private String firstName;
