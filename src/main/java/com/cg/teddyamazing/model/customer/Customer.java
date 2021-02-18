@@ -1,5 +1,6 @@
 package com.cg.teddyamazing.model.customer;
 
+import com.cg.teddyamazing.model.account.Account;
 import org.aspectj.bridge.IMessage;
 import org.springframework.format.annotation.NumberFormat;
 
@@ -24,6 +25,9 @@ public class Customer {
     @NumberFormat
     private String phoneNumber;
 
+    @OneToOne(mappedBy = "customer")
+    private Account account;
+
     public Customer() {
     }
 
@@ -34,6 +38,13 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 
     public Long getId() {
         return id;
