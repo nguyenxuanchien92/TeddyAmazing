@@ -42,40 +42,40 @@ public class CustomerController {
 
 
 
-    @GetMapping("/customers")
-    public ModelAndView listCustomers(@RequestParam("s") Optional<String> keyword, @RequestParam("page") Optional<Integer> page){
-        Page<Customer> customers;
-        ModelAndView modelAndView = new ModelAndView("/customer/list");
-        int pageNumb = 0;
-        if(page.isPresent() && page.get() > 1) pageNumb = page.get() - 1;
-        PageRequest pageSplitter = new PageRequest(pageNumb,4);
-        if(keyword.isPresent()){
-            customers = customerService.findAllByFirstNameContaining(keyword.get(), pageSplitter);
-            modelAndView.addObject("keyword", keyword.get());
-        } else {
-            customers = customerService.findAll(pageSplitter);
-        }
-        modelAndView.addObject("customers", customers);
-        return modelAndView;
-
-
-
-//        if (page.isPresent() && page.get() > 1){
-//            pageNumb = page.get() - 1;
-//        }
-//
-//        PageRequest pageRequest = new PageRequest(pageNumb,4,new Sort("firstName"));
-//        if (keyword.isPresent()){
-//            customers = customerService.findAllByFirstNameContaining(keyword.get(), pageRequest);
-//            modelAndView.addObject("keyword",keyword.get());
+//    @GetMapping("/customers")
+//    public ModelAndView listCustomers(@RequestParam("s") Optional<String> keyword, @RequestParam("page") Optional<Integer> page){
+//        Page<Customer> customers;
+//        ModelAndView modelAndView = new ModelAndView("/customer/list");
+//        int pageNumb = 0;
+//        if(page.isPresent() && page.get() > 1) pageNumb = page.get() - 1;
+////        PageRequest pageSplitter = new PageRequest(pageNumb,4);
+//        if(keyword.isPresent()){
+//            customers = customerService.findAllByFirstNameContaining(keyword.get(), pageSplitter);
+//            modelAndView.addObject("keyword", keyword.get());
 //        } else {
-//            customers = customerService.findAll(pageRequest);
+//            customers = customerService.findAll(pageSplitter);
 //        }
-//
 //        modelAndView.addObject("customers", customers);
 //        return modelAndView;
-
-    }
+//
+//
+//
+////        if (page.isPresent() && page.get() > 1){
+////            pageNumb = page.get() - 1;
+////        }
+////
+////        PageRequest pageRequest = new PageRequest(pageNumb,4,new Sort("firstName"));
+////        if (keyword.isPresent()){
+////            customers = customerService.findAllByFirstNameContaining(keyword.get(), pageRequest);
+////            modelAndView.addObject("keyword",keyword.get());
+////        } else {
+////            customers = customerService.findAll(pageRequest);
+////        }
+////
+////        modelAndView.addObject("customers", customers);
+////        return modelAndView;
+//
+//    }
 
     @GetMapping("/edit-customer/{id}")
     public ModelAndView showEditForm(@PathVariable Long id){
