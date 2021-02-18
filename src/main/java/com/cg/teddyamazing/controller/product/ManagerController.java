@@ -37,7 +37,7 @@ public class ManagerController {
         pageable = PageRequest.of(pageNum, 10);
         manageProducts = managerProductService.findAll(pageable);
 
-//   bug:     manageProducts1=managerProductService.findAllGroupBy();
+        manageProducts1 = managerProductService.findAllGroupBy();
         ModelAndView modelAndView = new ModelAndView("product/list");
         modelAndView.addObject("manageproducts", manageProducts);
         return modelAndView;
