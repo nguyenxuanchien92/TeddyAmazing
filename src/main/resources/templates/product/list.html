@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/create">Create new Product</a>
+<h1>List Product</h1>
+<br>
+<table border="1">
+    <tr>
+<!--        <th>ID</th>-->
+        <th>Product-Name</th>
+        <th>Quantity</th>
+        <th>Product_Img</th>
+        <th>Product-Price</th>
+
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="mp : ${manageproducts}">
+        <tr>
+<!--            <td th:text="${mp.id}"></td>-->
+            <td th:text="${mp.product.getName()}"></td>
+            <td th:text="${mp.quantity}"></td>
+
+            <td ><img th:src="${mp.product.getImg()}" width="400" height="200"></td>
+            <td th:text="${mp.product.getPrice()}"></td>
+            <td><a th:href="@{/edit/__${mp.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete/__${mp.id}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <a th:href="@{'/home'(page=${manageproducts.number})}" th:if="${manageproducts.hasPrevious()}">Previous</a>
+    <span th:text="${manageproducts.number + 1}"></span>/<span th:text="${manageproducts.totalPages}"></span>
+    <a th:href="@{'/home'(page=${manageproducts.number + 2})}" th:if="${manageproducts.hasNext()}">Next</a>
+</div>
+
+</body>
+</html>

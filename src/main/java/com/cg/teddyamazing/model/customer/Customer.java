@@ -12,22 +12,37 @@ import javax.validation.constraints.NotEmpty;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotEmpty(message = "please input your first name")
     private String firstName;
+
     @NotEmpty(message = "pease input your last name")
     private String lastName;
+
     @NotEmpty(message = "pease input your address")
     private String address;
+
     @NotEmpty(message = "pease input your phone number")
-    @NumberFormat
     private String phoneNumber;
+
+    @OneToOne
+    @JoinColumn
+    private Account account;
 
     public Customer() {
     }
 
     public Customer(String firstName, String lastName, String address, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Customer(Long id,String firstName,String lastName,String address,String phoneNumber) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;

@@ -12,9 +12,9 @@
     <input name="s" type="text"/>
     <input type="submit" th:value="Search"/>
 </form><br/>
-<form>
-    Sort by Fisrt name :
-    <input type="submit" name="s1" th:value="SortByName">
+<form >
+    Sort All Product by Name :
+    <input type="submit" name="s1" th:value="Sort">
 </form>
 <table border="1">
     <tr>
@@ -36,16 +36,16 @@
             <td th:text="${product.price}"></td>
             <td th:text="${product.category.name}"></td>
             <td th:text="${product.size.name}"></td>
-            <td ></td>
+            <td ><img th:src="${product.img}" width="400" height="200"></td>
             <td><a th:href="@{/edit/__${product.id}__ }">Edit</a></td>
             <td><a th:href="@{/delete/__${product.id}__ }">Delete</a></td>
         </tr>
     </th:block>
 </table>
 <div>
-    <a th:href="@{'/home'(page=${products.number - 1})}" th:if="${products.hasPrevious()}">Previous</a>
+    <a th:href="@{'/home'(page=${products.number})}" th:if="${products.hasPrevious()}">Previous</a>
     <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>
-    <a th:href="@{'/home'(page=${products.number + 1})}" th:if="${products.hasNext()}">Next</a>
+    <a th:href="@{'/home'(page=${products.number + 2})}" th:if="${products.hasNext()}">Next</a>
 </div>
 
 </body>

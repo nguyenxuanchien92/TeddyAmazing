@@ -4,9 +4,11 @@ package com.cg.teddyamazing;
 import com.cg.teddyamazing.service.customer.CustomerService;
 import com.cg.teddyamazing.service.customer.impl.CustomerServiceImpl;
 import com.cg.teddyamazing.service.product.CategoryService;
+import com.cg.teddyamazing.service.product.ManagerProductService;
 import com.cg.teddyamazing.service.product.ProductService;
 import com.cg.teddyamazing.service.product.SizeService;
 import com.cg.teddyamazing.service.product.impl.CategoryServiceImpl;
+import com.cg.teddyamazing.service.product.impl.ManagerServiceImpl;
 import com.cg.teddyamazing.service.product.impl.ProductServiceImpl;
 import com.cg.teddyamazing.service.product.impl.SizeServiceImpl;
 import org.springframework.boot.SpringApplication;
@@ -32,6 +34,11 @@ public class TeddyAmazingApplication {
     @Bean
     public SizeService sizeService(){
         return new SizeServiceImpl();
+    }
+
+    @Bean
+    public ManagerProductService managerProductService(){
+        return new ManagerServiceImpl();
     }
 
     @Bean

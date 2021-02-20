@@ -7,8 +7,7 @@
 </head>
 <body>
 <span th:text="${message} ? ${message} : '' "></span>
-<a href="/create-customer">Create new customer</a><br/>
-<a href="/provinces">list provinces</a><br/>
+<a href="/customer/create">Create new customer</a><br/>
 
 <h1>Customers</h1>
 <form>
@@ -33,9 +32,9 @@
             <td th:text="${customer.lastName}"></td>
             <td th:text="${customer.address}"></td>
             <td th:text="${customer.phoneNumber}"></td>
-            <td><a th:href="@{/edit-customer/__${customer.id}__ }">Edit</a></td>
-            <!--                        <td><a th:href="@{/delete-customer/__${customer.id}__ }">Delete</a></td>-->
-            <td><form th:action="@{/customer/delete}" th:method="post" >
+            <td><a th:href="@{/customer/edit-customer/__${customer.id}__ }">Edit</a></td>
+<!--            <td><a th:href="@{/delete-customer/__${customer.id}__ }">Delete</a></td>-->
+            <td><form th:action="@{/customer/delete-customer}" th:method="post" >
                 <input th:type="submit" th:value="delete" />
                 <input th:type="hidden" th:value="${customer.id}" th:name="id"/>
             </form></td>

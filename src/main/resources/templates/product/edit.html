@@ -12,17 +12,17 @@
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
 </th:block>
-<form th:action="@{/save-product}" th:object="${product}" method="post">
+<form th:action="@{/save-product}" th:object="${product}" method="post" enctype="multipart/form-data">
     <table>
         <tr>
             <!--            <td>ID:</td>-->
-            <td><input type="hidden" th:field="*{id}"/></td>
+            <td><input name="id" type="hidden" th:field="*{id}"/></td>
             <!--            <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error</td>-->
         </tr>
         <tr>
             <td>Name:</td>
             <td><input type="text" th:field="*{name}"/></td>
-            <!--            <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error</td>-->
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
         </tr>
         <tr>
             <td>Desv:</td>
@@ -33,7 +33,7 @@
         <tr>
             <td>Price:</td>
             <td><input type="text" th:field="*{price}"/></td>
-            <!--            <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error</td>-->
+            <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Name Error</td>
         </tr>
 
         <tr>
@@ -57,7 +57,9 @@
 
         <tr>
             <td>Img:</td>
-            <td><input type="text" th:field="*{img}"/></td>
+
+            <td>
+                <input th:value="${product.img}" type="file" th:field="*{img}"/></td>
             <!--            <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error</td>-->
         </tr>
         <tr>
