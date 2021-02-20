@@ -78,7 +78,7 @@ public class CustomerController {
     }
 
     @PostMapping("/create-customer")
-    public ModelAndView saveCustomer(@Valid @ModelAttribute("customer") Customer customer,@RequestParam("account") Long id, BindingResult bindingResult){
+    public ModelAndView saveCustomer(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult, @RequestParam("account") Long id){
         ModelAndView modelAndView;
         if (bindingResult.hasFieldErrors()){
             modelAndView = new ModelAndView("customer/create");
@@ -92,6 +92,7 @@ public class CustomerController {
         modelAndView.addObject("message", "da them khach hang thanh cong");
         return modelAndView;
     }
+
 
     @GetMapping("/edit-customer/{id}")
     public ModelAndView showEditForm(@PathVariable Long id){

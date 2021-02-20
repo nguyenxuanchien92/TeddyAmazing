@@ -5,6 +5,7 @@ import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -16,15 +17,18 @@ public class Customer {
     private Long id;
 
     @NotEmpty(message = "please input your first name")
+    @Size(min=1,max=20)
     private String firstName;
 
-    @NotEmpty(message = "pease input your last name")
+    @NotEmpty(message = "please input your last name")
+    @Size(min=1,max=20)
     private String lastName;
 
-    @NotEmpty(message = "pease input your address")
+    @Size(min=1,max=50)
     private String address;
 
-    @NotEmpty(message = "pease input your phone number")
+    @Size(min=10,max=11,message = "so dien thoai phai co 10 hoac 11 so")
+    @NumberFormat()
     private String phoneNumber;
 
     @OneToOne
