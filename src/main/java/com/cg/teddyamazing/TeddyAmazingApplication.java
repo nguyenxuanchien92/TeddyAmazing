@@ -1,7 +1,9 @@
 package com.cg.teddyamazing;
 
 
+import com.cg.teddyamazing.service.customer.AccountService;
 import com.cg.teddyamazing.service.customer.CustomerService;
+import com.cg.teddyamazing.service.customer.impl.AccountImpl;
 import com.cg.teddyamazing.service.customer.impl.CustomerServiceImpl;
 import com.cg.teddyamazing.service.product.CategoryService;
 import com.cg.teddyamazing.service.product.ManagerProductService;
@@ -46,4 +48,8 @@ public class TeddyAmazingApplication {
         return new CustomerServiceImpl();
     }
 
+    @Bean
+    public AccountService accountService(){
+        return new AccountImpl();
+    }
 }

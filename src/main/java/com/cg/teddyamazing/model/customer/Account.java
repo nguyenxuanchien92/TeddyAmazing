@@ -2,6 +2,7 @@ package com.cg.teddyamazing.model.customer;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,6 +25,9 @@ public class Account {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
+
+    @OneToMany(targetEntity = Customer.class)
+    private List<Customer> customers;
 
     public Account(Long id, String userName, String passWord, Date date, Set<Role> roles) {
         this.id = id;

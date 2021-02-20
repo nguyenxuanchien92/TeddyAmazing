@@ -1,9 +1,11 @@
 package com.cg.teddyamazing.controller.customer;
 
 
+import com.cg.teddyamazing.model.customer.Account;
 import com.cg.teddyamazing.model.customer.Customer;
 import com.cg.teddyamazing.model.product.Product;
 import com.cg.teddyamazing.model.product.ProductForm;
+import com.cg.teddyamazing.service.customer.AccountService;
 import com.cg.teddyamazing.service.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,6 +35,9 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private AccountService accountService;
 
     @GetMapping("/list")
     public ModelAndView showList(@RequestParam("s") Optional<String> s,
@@ -73,32 +78,15 @@ public class CustomerController {
     }
 
     @PostMapping("/create-customer")
-    public ModelAndView saveCustomer(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult, Pageable pageable){
+    public ModelAndView saveCustomer(@Valid @ModelAttribute("customer") Customer customer,@RequestParam("account") Long id, BindingResult bindingResult){
         ModelAndView modelAndView;
-
-        Page<Customer> customers = customerService.findAll(pageable);
-
-        for (Customer c :customers){
-            if (c.getId().equals(customer.getId())){
-                modelAndView = new ModelAndView("customer/create");
-                modelAndView.addObject("customer",new Customer());
-                modelAndView.addObject("message","ID da ton tai");
-                return modelAndView;
-            }
-        }
-
         if (bindingResult.hasFieldErrors()){
             modelAndView = new ModelAndView("customer/create");
             return modelAndView;
         }
-        Customer customer1;
-        customer1 = new Customer(customer.getId(),customer.getFirstName(),customer.getLastName(),customer.getAddress(),customer.getPhoneNumber());
-        customer1.setId(customer.getId());
-        customer1.setFirstName(customer.getFirstName());
-        customer1.setLastName(customer.getLastName());
-        customer1.setAddress(customer.getAddress());
-        customer1.setPhoneNumber(customer.getPhoneNumber());
-        customerService.save(customer1);
+        Account account = accountService.findById(id);
+        customer.setAccount(account);
+        customerService.save(customer);
         modelAndView = new ModelAndView("customer/create");
         modelAndView.addObject("customer",new Customer());
         modelAndView.addObject("message", "da them khach hang thanh cong");

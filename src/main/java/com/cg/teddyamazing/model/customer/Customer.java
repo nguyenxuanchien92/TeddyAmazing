@@ -28,7 +28,7 @@ public class Customer {
     private String phoneNumber;
 
     @OneToOne
-    @JoinColumn
+    @JoinColumn(name = "account_id")
     private Account account;
 
     public Customer() {
@@ -88,6 +88,14 @@ public class Customer {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }
 
