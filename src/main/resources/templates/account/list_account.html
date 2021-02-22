@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show list account</title>
+</head>
+<body>
+    <table border="1px spoil black">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Account</th>
+                <th>User Name</th>
+                <th>Create Date</th>
+                <th colspan="2">Option</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="account: ${listAccount}">
+                <td th:name="id" th:text="${account.id}"></td>
+                <td th:name="">nguyen chien</td>
+                <td>chien</td>
+                <td>27/02/2000</td>
+                <td>Edit</td>
+                <td>Delete</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
