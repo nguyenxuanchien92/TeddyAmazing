@@ -1,7 +1,6 @@
 package com.cg.teddyamazing.service.account.impl;
 
 import com.cg.teddyamazing.model.account.Account;
-import com.cg.teddyamazing.model.account.LevelRole;
 import com.cg.teddyamazing.model.account.Role;
 import com.cg.teddyamazing.repository.account.AccountRepo;
 import com.cg.teddyamazing.repository.role.RoleRepo;
@@ -9,9 +8,7 @@ import com.cg.teddyamazing.service.account.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 
 public class AccountServiceImpl implements AccountService {
