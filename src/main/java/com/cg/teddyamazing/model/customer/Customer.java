@@ -5,6 +5,8 @@ import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import java.util.Optional;
 
 
 @Entity
@@ -15,13 +17,22 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty(message = "please input your first name")
+    @Size(min=1,max=20)
     private String firstName;
     @NotEmpty(message = "please input your last name")
+
+    @NotEmpty(message = "please input your last name")
+    @Size(min=1,max=20)
     private String lastName;
     @NotEmpty(message = "please input your address")
+
+    @Size(min=1,max=50)
     private String address;
     @NotEmpty(message = "please input your phone number")
-    @NumberFormat
+
+
+    @Size(min=10,max=11,message = "so dien thoai phai co 10 hoac 11 so")
+    @NumberFormat()
     private String phoneNumber;
 
 
@@ -39,13 +50,14 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    public Account getAccount() {
-        return account;
+    public Customer(Long id,String firstName,String lastName,String address,String phoneNumber) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
 
     public Long getId() {
         return id;
@@ -87,6 +99,14 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 }
 
 

@@ -7,16 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.Optional;
 
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     public CustomerRepo customerRepo;
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
-    public Iterable<Customer> findAll() {
-        return customerRepo.findAll();
+    public Page<Customer> findAll(Pageable pageable) {
+        return customerRepo.findAll(pageable);
     }
 
     @Override
@@ -35,12 +39,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Page<Customer> findAllByFirstNameContaining(String firstName, Pageable pageable) {
-        return customerRepo.findAllByFirstNameContaining(firstName, pageable);
+    public Iterable<Customer> findAll() {
+        return customerRepo.findAll();
     }
 
     @Override
-    public Page<Customer> findAll(Pageable pageable) {
-        return customerRepo.findAll(pageable);
+    public Page<Customer> findAllByFirstNameContaining(String firstName, Pageable pageable) {
+        return customerRepo.findAllByFirstNameContaining(firstName,pageable);
     }
 }

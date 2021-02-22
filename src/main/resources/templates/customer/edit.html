@@ -8,29 +8,36 @@
 <body>
 <h1>Edit customer</h1>
 <p>
-    <a href="/customers">Customer list</a>
+    <a href="/customer/list">Customer list</a>
 </p>
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
 </th:block>
-<form th:action="@{/edit-customer}" th:object="${customer}" method="post">
+<form th:action="@{/customer/edit-customer}" th:object="${customer}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
             <td>First name:</td>
             <td><input type="text" th:field="*{firstName}"/></td>
+            <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></td>
         </tr>
         <tr>
             <td>Last name:</td>
             <td><input type="text" th:field="*{lastName}"/></td>
+            <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></td>
         </tr>
         <tr>
             <td>Address:</td>
             <td><input type="text" th:field="*{address}"/></td>
+            <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></td>
         </tr>
         <tr>
             <td>Phone number:</td>
             <td><input type="text" th:field="*{phoneNumber}"/></td>
+            <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></td>
+        </tr>
+        <tr>
+            <td><input type="hidden" name="account" th:field="*{account}" ></td>
         </tr>
         <tr>
             <td></td>

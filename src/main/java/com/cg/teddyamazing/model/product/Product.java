@@ -1,9 +1,13 @@
 package com.cg.teddyamazing.model.product;
 
+import lombok.Data;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table
+@Data
 public class Product {
     @Id
     private String id;
@@ -24,6 +28,59 @@ public class Product {
 
     public Product() {
     }
+
+
+    //upload file
+
+    public static class ProductBuilder {
+        private final String name;
+        private double price;
+        private String desv;
+        private String img;
+        private Category category;
+        private Size size;
+
+        public ProductBuilder(String name) {
+            this.name = name;
+        }
+
+        public ProductBuilder desv(String description) {
+            this.desv = description;
+            return this;
+        }
+        public ProductBuilder price(double price) {
+            this.price = price;
+            return this;
+        }
+
+        public ProductBuilder img(String image) {
+            this.img = image;
+            return this;
+        }
+        public ProductBuilder category(Category category) {
+            this.category = category;
+            return this;
+        }
+        public ProductBuilder size(Size size) {
+            this.size = size;
+            return this;
+        }
+
+        public Product build() {
+            return new Product(this);
+        }
+    }
+    public Product(ProductBuilder productBuilder){
+        this.name= productBuilder.name;
+        this.price= productBuilder.price;
+        this.desv= productBuilder.desv;
+        this.img= productBuilder.img;
+        this.category= productBuilder.category;
+        this.size= productBuilder.size;
+
+    }
+
+//    end upload file
 
     public Product(String id, String name, double price, String desv, String img, Category category, Size size) {
         this.id = id;

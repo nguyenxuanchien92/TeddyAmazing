@@ -5,8 +5,6 @@ import com.cg.teddyamazing.repository.product.CategoryRepo;
 import com.cg.teddyamazing.service.product.CategoryService;
 import com.cg.teddyamazing.service.product.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-
-
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
