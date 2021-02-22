@@ -2,39 +2,45 @@ package com.cg.teddyamazing.model.account;
 
 import com.cg.teddyamazing.model.customer.Customer;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 public class Account {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(unique = true)
     private String userName;
     private String passWord;
     private Date createDate;
-    @OneToOne
+
     @JoinColumn
+    @OneToOne
     private Customer customer;
-    private int roleId;
 
-    public Account(){}
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
 
-    public Account(String id, String userName, String passWord, Date createDate, Customer customer, int roleId) {
-        this.id = id;
-        this.userName = userName;
-        this.passWord = passWord;
-        this.createDate = createDate;
-        this.customer = customer;
-        this.roleId = roleId;
+    public Account() {
     }
 
-    public String getId() {
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -68,13 +74,5 @@ public class Account {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public int getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
     }
 }

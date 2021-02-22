@@ -1,7 +1,6 @@
 package com.cg.teddyamazing.model.customer;
 
 import com.cg.teddyamazing.model.account.Account;
-import org.aspectj.bridge.IMessage;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
@@ -17,15 +16,17 @@ public class Customer {
     private Long id;
     @NotEmpty(message = "please input your first name")
     private String firstName;
-    @NotEmpty(message = "pease input your last name")
+    @NotEmpty(message = "please input your last name")
     private String lastName;
-    @NotEmpty(message = "pease input your address")
+    @NotEmpty(message = "please input your address")
     private String address;
-    @NotEmpty(message = "pease input your phone number")
+    @NotEmpty(message = "please input your phone number")
     @NumberFormat
     private String phoneNumber;
 
-    @OneToOne(mappedBy = "customer")
+
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+//    @JoinColumn(foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Account account;
 
     public Customer() {
@@ -85,6 +86,7 @@ public class Customer {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
 }
 
 
