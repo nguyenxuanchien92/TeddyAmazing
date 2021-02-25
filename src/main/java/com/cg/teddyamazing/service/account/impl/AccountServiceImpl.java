@@ -1,15 +1,18 @@
 package com.cg.teddyamazing.service.account.impl;
 
 import com.cg.teddyamazing.model.account.Account;
+import com.cg.teddyamazing.model.account.AccountPrinciple;
 import com.cg.teddyamazing.model.account.Role;
 import com.cg.teddyamazing.repository.account.AccountRepo;
 import com.cg.teddyamazing.repository.role.RoleRepo;
 import com.cg.teddyamazing.service.account.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.Optional;
-
 
 public class AccountServiceImpl implements AccountService {
     @Autowired
@@ -28,7 +31,7 @@ public class AccountServiceImpl implements AccountService {
         model.setCreateDate(currentDate());
 
         //set role default for account is ROLE_USER
-        model.setRole(getRoleAccountDefault());
+        //model.setRole(getRoleAccountDefault());
         return accountRepo.save(model);
     }
 
@@ -52,4 +55,13 @@ public class AccountServiceImpl implements AccountService {
         return role;
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        Account account = accountRepo.findByUserName(username);
+        if(account == null){
+            throw new UsernameNotFoundException(username);
+        }
+        return AccountPrinciple.build(account);
+    }
 }

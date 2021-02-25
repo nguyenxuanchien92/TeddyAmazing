@@ -1,6 +1,7 @@
 package com.cg.teddyamazing.controller.account;
 
 import com.cg.teddyamazing.model.account.Account;
+import com.cg.teddyamazing.model.account.Role;
 import com.cg.teddyamazing.model.customer.Customer;
 import com.cg.teddyamazing.service.account.AccountService;
 import com.cg.teddyamazing.service.customer.CustomerService;
@@ -25,7 +26,7 @@ public class LoginController {
 
     @GetMapping("/register-login")
     public ModelAndView formRegisterLogin(){
-        ModelAndView mav = new ModelAndView("account/form_register_account");
+        ModelAndView mav = new ModelAndView("account/form_register");
         Account account = new Account();
         Customer customer = new Customer();
         mav.addObject("account",account);
@@ -34,16 +35,20 @@ public class LoginController {
         return mav;
     }
 
+
     @PostMapping("/register-login")
     public ModelAndView registerAccount(@ModelAttribute("account")Account account,
                                         @ModelAttribute("customer")Customer customer){
-        ModelAndView mav = new ModelAndView("account/form_login");
+        ModelAndView mav = new ModelAndView("account/form_register");
 
         // give data account of user into DB
         customerService.save(customer);
         account.setCustomer(customer);
+        account.setRole(new Role(2L));
         accountService.save(account);
 
+        account = new Account();
+        customer = new Customer();
         return mav;
     }
 }
